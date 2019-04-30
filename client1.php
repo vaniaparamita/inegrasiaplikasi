@@ -1,12 +1,10 @@
 <?php
+   
     $curl = curl_init();
     curl_setopt_array ($curl, [
         CURLOPT_RETURNTRANSFER => 1,
         CURLOPT_URL => 'http://10.33.34.121/read.php',
-		CURLOPT_POST => 1,
-		
-		
-		
+		    CURLOPT_POST => 1,   
     ]);
     $result = curl_exec($curl);
     curl_close($curl);
@@ -14,13 +12,14 @@
     $result =json_decode($result);
 ?>
 
-
-<form action ="http://10.33.34.121/create.php" method ="post">
+<form action ="http://10.33.34.121/create.php" method ="POST">
+<input type ="text" placeholder="token" name ="token"
+value="dm5LmAW6r93zIszYTddupvZaEFs6MSf1wHpxsXHHyBesN3IXzu" readonly> </input>
 <input type ="text" placeholder="nama" name ="nama"> </input>
-<input type ="text" placeholder="nim" name ="nim"> </input>
-<input type ="password" placeholder="password" name="password"> </input>
+<input type ="text" placeholder="id_user" name ="id_user"> </input>
 <button type ="submit" value ="submit" >SUBMIT </button>
 </form>
+  
 <!doctype html>
 <html lang="en">
   <head>
@@ -39,27 +38,12 @@
 	<table class="table">
 	  <thead>
 		<tr>
-		  <th scope="col">nama</th>
-		  <th scope="col">nim</th>
+		  <th scope="col">Nama</th>
+		  <th scope="col">Id User</th>
       <th scope="col">Delete</th>
 
 		</tr>
 	  </thead>
-	  <tbody>
-			<?php foreach ($result as $r){
-				echo '	
-				
-					<tr>
-
-					  <td>'.$r->nama.'</td>
-            <td>'.$r->nim.'</td>
-
-            <td> <a href="http://10.33.34.121/client_delete.php?nim='.$r->nim.'">Hapus</a></td>
-					</tr>
-			  ';
-			}
-			?>
-	  </tbody>
 	</table>
 	</div>
 
